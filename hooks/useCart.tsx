@@ -100,7 +100,7 @@ export const CartContextProvider = (props: Props) => {
         let updatedCart;
 
         if(product.quantity === 1){
-            return toast.error("Minumum Quantity reached")
+            return toast.error("Minimum Quantity reached")
         }
 
         if(cartProducts){
