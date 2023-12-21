@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import Heading from '../Heading'
-import { product } from '@/utils/product'
 import moment from 'moment'
 import { Rating } from '@mui/material'
 import Avatar from '../Avatar'
@@ -10,7 +9,7 @@ interface ListRatingProps {
     product: any
 }
 
-const ListRating:React.FC<ListRatingProps> = () => {
+const ListRating:React.FC<ListRatingProps> = ({ product }) => {
   return (
     <div>
         <Heading title='Product Review'/>

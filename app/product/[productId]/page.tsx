@@ -1,7 +1,7 @@
 import Container from '@/components/Container'
 import ListRating from '@/components/products/ListRating'
 import ProductDetails from '@/components/products/ProductDetails'
-import { product } from '@/utils/product'
+import { products } from '@/utils/products'
 import React from 'react'
 
 interface IParams {
@@ -9,6 +9,8 @@ interface IParams {
 }
 
 const ProductDetail = ({ params }: { params: IParams }) => {
+
+  const product = products.find((item) => item.id === params.productId)
   
   return (
     <div className='p-8'>
