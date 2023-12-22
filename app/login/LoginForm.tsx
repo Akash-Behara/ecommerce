@@ -3,12 +3,17 @@
 import Button from '@/components/Button'
 import Heading from '@/components/Heading'
 import Input from '@/components/inputs/Input'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { AiOutlineGoogle } from 'react-icons/ai'
 
 const LoginForm = () => {
+    const router = useRouter()
+
     const [isloading, setIsloading] = useState(false)
 
     const { handleSubmit, register, formState: {errors} } = useForm<FieldValues>({
@@ -20,7 +25,21 @@ const LoginForm = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsloading(true)
-        console.log('data', data)
+        signIn('credentials', {
+            ...data,
+            redirect: false
+        })
+        .then((cb) => {
+            setIsloading(false)
+            if(cb?.ok){
+                router.push('/cart')
+                router.refresh()
+                toast.success('Logged In')
+            }
+            if(cb?.error){
+                toast.error(cb.error)
+            }
+        })
     }
         
     return (
