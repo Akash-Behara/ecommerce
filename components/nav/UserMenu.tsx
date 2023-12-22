@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Avatar from '../Avatar'
-import { AiFillCaretDown } from 'react-icons/ai'
 import Link from 'next/link'
 import MenuItem from './MenuItem'
 import { signOut } from 'next-auth/react'
@@ -10,12 +9,17 @@ import BackDrop from './BackDrop'
 import { SafeUser } from '@/types'
 
 interface UserMenuProps{
-    currentUser: SafeUser | null
+    currentUser: any
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
     const [isOpen, setIsOpen] = useState(false)
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        currentUser.then((res: any) => {setUser(res)})
+    }, [currentUser])
 
     const toggleOpen = useCallback(() => {
         setIsOpen(prev => !prev)
@@ -29,7 +33,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             </div>
             {isOpen && (
                 <div className='absolute rounded-md shadow-md min-w-[180px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer'>
-                    {currentUser 
+                    {user
                         ?   <div>
                                 <Link href="/orders">
                                     <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>

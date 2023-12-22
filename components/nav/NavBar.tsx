@@ -10,6 +10,7 @@ const redressed = Redressed({ subsets: ['latin'], weight: ['400'] })
 
 const NavBar = () => {
   const currentUser = getCurrentUser()
+
   return (
     <nav className='sticky top-0 w-full bg-slate-200 z-30 shadow-sm h-14'>
         <div className='px-4 border-b-[1px] h-full flex items-center w-full'>
