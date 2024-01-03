@@ -3,10 +3,7 @@ import { getServerSession } from "next-auth";
 import prisma from '@/libs/prismaDB'
 
 export async function getSession(){
-    const res = await getServerSession(authOptions)
-    console.log('res', res)
-
-    return res
+    return await getServerSession(authOptions)
 }
 
 export async function getCurrentUser(){

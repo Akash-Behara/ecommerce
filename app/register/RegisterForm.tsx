@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form'
 import Input from '@/components/inputs/Input'
 import Heading from '@/components/Heading'
@@ -10,8 +10,13 @@ import { AiOutlineGoogle } from 'react-icons/ai'
 import { signIn } from 'next-auth/react'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { SafeUser } from '@/types'
 
-const RegisterForm = () => {
+interface RegisterFormProps {
+    currentUser: SafeUser | null | undefined
+}
+
+const RegisterForm: React.FC<RegisterFormProps> = ({currentUser}) => {
 
     const router = useRouter()
 
@@ -23,6 +28,13 @@ const RegisterForm = () => {
             password: ''
         }
     })
+
+    useEffect(() => {
+        if(currentUser){
+            router.push('/cart')
+            router.refresh()
+        }
+    }, [currentUser, router])
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsloading(true)
@@ -53,11 +65,15 @@ const RegisterForm = () => {
         .catch((err) => toast.error(err))
         .finally(() => { setIsloading(false) })
     }
+
+    if(currentUser){
+        return <p className='text-center'>Logged In. Redirecting...</p>
+    }
         
     return (
         <>
             <Heading title='Sign Up for E~SHOP'/>
-            <Button onClick={() => {}} outline label='Sign up with Google' icon={AiOutlineGoogle}/>
+            <Button onClick={() => {signIn('google')}} outline label='Sign up with Google' icon={AiOutlineGoogle}/>
             <hr className='bg-slate-300 w-full h-px'/>
             <Input id='name' label='Name' disabled={isloading} register={register} errors={errors} required/>
             <Input id='email' label='Email' type='email' disabled={isloading} register={register} errors={errors} required/>
