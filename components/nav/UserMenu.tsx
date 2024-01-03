@@ -9,7 +9,7 @@ import Avatar from '../Avatar'
 import { SafeUser } from '@/types'
 
 interface UserMenuProps{
-    currentUser: Promise<SafeUser>
+    currentUser: any
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
