@@ -69,8 +69,9 @@ export async function POST(req: Request) {
     } else {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: total,
-            currency: 'usd',
+            currency: 'inr',
             automatic_payment_methods: {enabled: true},
+            description: 'Payment for order',
         });
 
         orderData.paymentIntentId = paymentIntent.id;
