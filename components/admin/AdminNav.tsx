@@ -19,13 +19,13 @@ const AdminNav = () => {
                     <AdminNavItem label="Summary" icon={MdDashboard} selected={path === '/admin'} />
                 </Link>
                 <Link href="/admin/add-products">
-                    <AdminNavItem label="Add Products" icon={MdLibraryAdd} selected={path === '/add-products'} />
+                    <AdminNavItem label="Add Products" icon={MdLibraryAdd} selected={path === '/admin/add-products'} />
                 </Link>
                 <Link href="/admin/manage-products">
-                    <AdminNavItem label="Manage Products" icon={MdDns} selected={path === '/manage-products'} />
+                    <AdminNavItem label="Manage Products" icon={MdDns} selected={path === '/admin/manage-products'} />
                 </Link>
                 <Link href="/admin/manage-orders">
-                    <AdminNavItem label="Manage Orders" icon={MdFormatListBulleted} selected={path === '/manage-orders'} />
+                    <AdminNavItem label="Manage Orders" icon={MdFormatListBulleted} selected={path === '/admin/manage-orders'} />
                 </Link>
             </div>
         </Container>

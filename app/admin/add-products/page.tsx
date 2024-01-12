@@ -13,7 +13,7 @@ const AddProductsPage = async () => {
   }
 
   return (
-    <div className='p-8'>
+    <div className=''>
       <Container>
         <FormWrap>
           <AddProductForm />
