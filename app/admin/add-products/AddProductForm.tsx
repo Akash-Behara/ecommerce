@@ -156,7 +156,7 @@ const AddProductForm = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({productData})
+            body: JSON.stringify(productData)
         }).then((res) => {
             setIsProductCreated(true)
             toast.success('Product created successfully')
