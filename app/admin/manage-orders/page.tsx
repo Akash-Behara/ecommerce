@@ -3,10 +3,11 @@ import Container from '@/components/Container'
 import getOrders from '@/actions/getOrders'
 import { getCurrentUser } from '@/actions/getCurrentUser'
 import NullData from '@/components/NullData'
+import ManageOrdersClient from './ManageOrdersClient'
 
 const MagaeOrdersPage = async () => {
 
-  const products = await getOrders()
+  const orders = await getOrders()
   const currentUser = await getCurrentUser()
 
   if(!currentUser || currentUser.role!== 'ADMIN') {
@@ -16,7 +17,7 @@ const MagaeOrdersPage = async () => {
   return (
     <div className='pt-8'>
       <Container>
-        <div>orders</div>
+        <ManageOrdersClient orders={orders} />
       </Container>
     </div>
   )
